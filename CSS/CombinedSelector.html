@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* .header,
+      .red {
+        color: red;
+      } */
+      /* > direct child  */
+      /* _ space -> all child  */
+      article p {
+        color: blue;
+      }
+      p + p {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 class="header">I am the heading</h1>
+    </header>
+    <main>
+      <article>
+        <p>I am tag1</p>
+        <p>I am tag1.2</p>
+      </article>
+      <article>
+        <div>
+          <p>I am ptag2</p>
+        </div>
+      </article>
+      <article>
+        <div>
+          <div>
+            <p>I am ptag 3</p>
+          </div>
+        </div>
+      </article>
+    </main>
+    <p>I am ptag 4</p>
+  </body>
+</html>
