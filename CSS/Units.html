@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      /* Absolute units */
+      /* .box {
+        height: 300px;
+        width: 300px;
+        background-color: red;
+      } */
+
+      .box {
+        font-size: 2rem;
+        height: 50vh;
+        width: 50vw;
+        border: 1px solid red;
+      }
+      .child {
+        font-size: 2rem;
+        height: 50%;
+        width: 50%;
+        border: 1px solid green;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      Parent
+      <div class="child">Child</div>
+    </div>
+  </body>
+</html>
