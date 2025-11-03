@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .parent {
+        height: 100vh;
+        width: 100vw;
+        border: 5px solid black;
+        display: grid;
+        /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+      }
+      .child {
+        border: 5px solid black;
+      }
+      .first {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        background-color: lightcoral;
+      }
+      .second {
+        grid-column-start: 2;
+        grid-column-end: 4;
+        background-color: aqua;
+      }
+      .third {
+        grid-column-start: 4;
+        grid-column-end: 6;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        background-color: lightsalmon;
+      }
+      .fourth {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 3;
+        grid-row-end: 5;
+        background-color: lightgray;
+      }
+      .fifth {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 4;
+        background-color: lightskyblue;
+      }
+      .six {
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 2;
+        grid-row-end: 4;
+        background-color: lightgreen;
+      }
+      .seventh {
+        grid-column-start: 5;
+        grid-column-end: 6;
+        grid-row-start: 2;
+        grid-row-end: 5;
+        background-color: lightpink;
+      }
+      .eight {
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        background-color: lightseagreen;
+      }
+      .nine {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="child first"></div>
+      <div class="child second"></div>
+      <div class="child third"></div>
+      <div class="child fourth"></div>
+      <div class="child fifth"></div>
+      <div class="child six"></div>
+      <div class="child seventh"></div>
+      <div class="child eight"></div>
+      <div class="child nine"></div>
+    </div>
+  </body>
+</html>
