@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .box {
+        height: 500px;
+        width: 500px;
+        background-color: lightgray;
+        border: 1px solid black;
+        position: relative;
+      }
+      .child {
+        height: 100px;
+        width: 100px;
+      }
+      .red {
+        /* position: static; */
+        background-color: red;
+      }
+      .blue {
+        /* position: relative;
+
+        left: 100px; */
+        background-color: blue;
+      }
+      .green {
+        position: absolute;
+
+        right: 100px;
+        top: 100px;
+
+        background-color: green;
+      }
+      .yellow {
+        background-color: yellow;
+      }
+      .black {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+    Static , Absolute , relative , fixed , sticky 
+     -->
+    <div class="box">
+      <div class="child red"></div>
+      <div class="child blue"></div>
+      <div class="child green"></div>
+      <div class="child yellow"></div>
+      <div class="child black"></div>
+    </div>
+  </body>
+</html>
