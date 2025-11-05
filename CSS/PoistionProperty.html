@@ -15,7 +15,7 @@
         width: 500px;
         background-color: lightgray;
         border: 1px solid black;
-        position: relative;
+        /* position: relative; */
       }
       .child {
         height: 100px;
@@ -32,17 +32,23 @@
         background-color: blue;
       }
       .green {
-        position: absolute;
+        /* position: absolute;
 
         right: 100px;
-        top: 100px;
+        top: 100px; */
 
         background-color: green;
       }
       .yellow {
+        /* position: fixed;
+        right: 100px;
+        top: 100px; */
         background-color: yellow;
       }
       .black {
+        position: sticky;
+        top: 100px;
+        left: 100px;
         background-color: black;
       }
     </style>
@@ -54,9 +60,10 @@
     <div class="box">
       <div class="child red"></div>
       <div class="child blue"></div>
+      <div class="child black"></div>
       <div class="child green"></div>
       <div class="child yellow"></div>
-      <div class="child black"></div>
     </div>
+    <div style="height: 300vh; background-color: lightseagreen"></div>
   </body>
 </html>
