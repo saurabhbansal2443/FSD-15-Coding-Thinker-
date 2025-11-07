@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.red {
+  background-color: lightcoral;
+}
+.green {
+  background-color: greenyellow;
+}
+.yellow {
+  background-color: lightpink;
+}
+.navRoot {
+  width: 100vw;
+  height: 10vh;
+  border-bottom: 0.5px solid grey;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.logo {
+  width: 10%;
+}
+.navButton {
+  width: 50%;
+  margin-left: -10%;
+}
+.navButtonList {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
+.navButtonListItem {
+  text-transform: uppercase;
+  color: #ad8b39;
+}
+.loginButtons {
+  width: 17%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.loginText {
+  text-transform: uppercase;
+  color: #ad8b39;
+}
+.stayButton {
+  text-transform: uppercase;
+  border: none;
+  background-color: #ad8b39;
+  color: #ffffff;
+  padding: 10px 15px 10px 15px;
+}
