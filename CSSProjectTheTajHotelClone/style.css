@@ -247,3 +247,55 @@ hr {
 
 .textContainer {
 }
+
+.footerRoot {
+  width: 100vw;
+  height: 80vh;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footerConatiner {
+  height: 80%;
+  width: 80%;
+  border: 1px solid white;
+}
+.footerImageContainer {
+  height: 10%;
+  width: 10%;
+}
+.footerOptions {
+  height: 80%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+.latestUpdate {
+  border: 1px solid white;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  padding: 5% 3% 2% 0;
+}
+.quickLinks {
+  border: 1px solid white;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.connectWithUs {
+  border: 1px solid white;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.latestUpdatestext {
+  text-transform: uppercase;
+  color: #a5a2a2;
+}
