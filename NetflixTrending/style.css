@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  margin-top: 100px;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  width: 70vw;
+  height: 80vh;
+  position: relative;
+}
+.redLine {
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  border-top: 3px solid red;
+  border-radius: 9999vw;
+  /* box-shadow: rgba(8, 8, 188, 0.25) 0px 30px 60px -12px inset, rgba(14, 0, 215, 0.3) 0px 18px 36px -18px inset; */
+  background: radial-gradient(
+      50% 500% at 50% -420%,
+      rgba(64, 97, 231, 0.4) 80%,
+      rgba(0, 0, 0, 0.1) 100%
+    ),
+    black;
+  background-clip: padding-box;
+}
+
+.heading {
+  color: white;
+}
+.imagesCont {
+  margin-top: 2%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50%;
+}
+.card {
+  height: 100%;
+  width: 20%;
+  background-image: url("./cardImage.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.cardNumber {
+  text-shadow: 0 0 5px #ffffff, 0 0 5px #ffffff;
+  font-size: 10rem;
+  position: absolute;
+  bottom: 0%;
+  left: -13%;
+}

@@ -259,7 +259,6 @@ hr {
 .footerConatiner {
   height: 80%;
   width: 80%;
-  border: 1px solid white;
 }
 .footerImageContainer {
   height: 10%;
@@ -273,7 +272,6 @@ hr {
   grid-template-rows: 1fr;
 }
 .latestUpdate {
-  border: 1px solid white;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
@@ -281,7 +279,6 @@ hr {
   padding: 5% 3% 2% 0;
 }
 .quickLinks {
-  border: 1px solid white;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -298,4 +295,64 @@ hr {
 .latestUpdatestext {
   text-transform: uppercase;
   color: #a5a2a2;
+}
+.subscribeInput {
+  width: 100%;
+  padding-top: 20px;
+  display: flex;
+  align-items: end;
+  margin-bottom: 15px;
+}
+.emailInput {
+  height: 50px;
+  width: 50%;
+  outline: none;
+  border: none;
+  border-bottom: 0.5px solid #ffffff;
+  background-color: transparent;
+  padding-left: 15px;
+  font-size: 1.2rem;
+}
+.emailInput:hover {
+  border-bottom: 0.5px solid #a5a2a2;
+}
+.subscribeButton {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  background-color: #a5a2a2;
+  color: black;
+  padding: 10px 20px;
+  margin-left: 20px;
+  border: none;
+}
+.textWrapper {
+  width: 100%;
+  padding: 15px 0 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.white {
+  color: white;
+}
+
+.quickLinksList {
+  height: 80%;
+  width: 100%;
+  color: white;
+  list-style: none;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-weight: 100;
+}
+
+.quickLinksList > li {
+  width: 50%;
+  height: 20%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
