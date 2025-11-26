@@ -61,17 +61,17 @@ let a = 10;
 // let ans = factorial;
 // console.log(ans(5));
 
-let obj = {
-  name: "Saurabh",
-  age: 24,
-  gender: "male",
-  percetage: 93.5,
-  address: {
-    city: "Delhi",
-    HouseNumber: 27,
-    pincode: 110085,
-  },
-  isWell: true,
-  hoobies: ["Music", 1, 7, true, [true], { a: "b" }],
-};
-console.log(obj.hoobies[2]);
+// let obj = {
+//   name: "Saurabh",
+//   age: 24,
+//   gender: "male",
+//   percetage: 93.5,
+//   address: {
+//     city: "Delhi",
+//     HouseNumber: 27,
+//     pincode: 110085,
+//   },
+//   isWell: true,
+//   hoobies: ["Music", 1, 7, true, [true], { a: "b" }],
+// };
+// console.log(obj.hoobies[2]);
