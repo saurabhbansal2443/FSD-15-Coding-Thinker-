@@ -12,30 +12,64 @@
 
 // Var let and const are hoisted but let and const are stored in TDZ
 
-console.log(a);
-var a = 10;
-console.log(a);
+// console.log(a);
+// var a = 10;
+// console.log(a);
 
-first();
+// first();
 
-function first() {
-  console.log(a);
-  function second() {
-    console.log(b);
-    var b = 99;
-    console.log(b);
-    console.log(a);
-    function three() {
-      console.log(b);
-      console.log(a);
-      var b = 99;
-      console.log(b);
-      console.log(a);
-    }
-    console.log(a);
-    three();
-    console.log(b);
-  }
-  second();
-  console.log(b);
-}
+// function first() {
+//   console.log(a);
+//   function second() {
+//     console.log(b);
+//     var b = 99;
+//     console.log(b);
+//     console.log(a);
+//     function three() {
+//       console.log(b);
+//       console.log(a);
+//       var b = 99;
+//       console.log(b);
+//       console.log(a);
+//     }
+//     console.log(a);
+//     three();
+//     console.log(b);
+//   }
+//   second();
+//   console.log(b);
+// }
+
+// Global Scope - anything which is not in a function is called global scope
+
+// Var is function scope and let and const are block {} scope\
+
+// var let and const are function scoped beacuse function is also a block
+
+// let a = 10;
+
+// function abc() {
+//   let a = 100;
+//   console.log(a);
+// }
+
+// abc();
+
+// console.log(a);
+
+// let a = 10;
+// console.log(a);
+
+// {
+//   // console.log(a);
+//   let a = 100;
+//   console.log(a);
+// }
+
+// console.log(a);
+
+// console.log(a);
+
+let a;
+
+console.log(a);
