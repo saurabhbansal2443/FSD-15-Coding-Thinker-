@@ -55,5 +55,14 @@ body {
   height: 100px;
   width: 100px;
   margin: 10px;
+
+  background-color: lightsalmon;
+}
+
+.circle {
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+  border-radius: 50%;
   background-color: lightsalmon;
 }
