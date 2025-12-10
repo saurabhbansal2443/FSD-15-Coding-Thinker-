@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-color-container">
+        <div class="color red"></div>
+        <div class="color blue"></div>
+        <div class="color green"></div>
+        <div class="color black"></div>
+      </div>
+      <div class="controls">
+        <div class="control-button add-button-container">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11 11H7V13H11V17H13V13H17V11H13V7H11V11Z"
+            ></path>
+          </svg>
+        </div>
+        <div class="control-button delete-button-container">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            fill="currentColor"
+          >
+            <path
+              d="M17 4H22V6H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V6H2V4H7V2H17V4ZM9 9V17H11V9H9ZM13 9V17H15V9H13Z"
+            ></path>
+          </svg>
+        </div>
+        <div class="control-button show-all-button-container">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            fill="currentColor"
+          >
+            <path
+              d="M12.9998 3L12.9996 10.267L19.294 6.63397L20.294 8.36602L14.0006 11.999L20.294 15.634L19.294 17.366L12.9996 13.732L12.9998 21H10.9998L10.9996 13.732L4.70557 17.366L3.70557 15.634L9.99857 12L3.70557 8.36602L4.70557 6.63397L10.9996 10.267L10.9998 3H12.9998Z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    </nav>
+    <div class="ticket-container">
+      <div class="ticket-block">
+        <div class="ticket-color red"></div>
+        <div class="ticket-task-area">
+          <div class="ticker-lock-button-container">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              fill="currentColor"
+            >
+              <path
+                d="M19 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C15.866 2 19 5.13401 19 9V10ZM17 10V9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9V10H17ZM11 14V18H13V14H11Z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ticker-adder-block hide">
+      <textarea resize="none" class="ticket-adder-text"></textarea>
+      <div class="ticket-adde-color-container">
+        <div class="ticket-adde-color red"></div>
+        <div class="ticket-adde-color blue"></div>
+        <div class="ticket-adde-color green"></div>
+        <div class="ticket-adde-color black"></div>
+      </div>
+    </div>
+  </body>
+  <script src="./script.js"></script>
+</html>
