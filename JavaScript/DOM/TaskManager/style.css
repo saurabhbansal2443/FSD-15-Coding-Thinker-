@@ -77,6 +77,11 @@
   width: 100%;
 }
 .ticket-task-area {
+  overflow: wrap;
+  word-wrap: break-word;
+  text-overflow: wrap;
+  padding: 10;
+  color: #ffffff;
   position: relative;
   height: 90%;
   width: 100%;
