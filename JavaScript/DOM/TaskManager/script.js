@@ -3,20 +3,42 @@ const tickerAdderBlock = document.querySelector(".ticker-adder-block");
 const ticketAdderColorContainer = document.querySelector(
   ".ticket-adde-color-container"
 );
-
 const ticketAdderTextArea = document.querySelector(".ticket-adder-text");
 const taskAdderColors = document.querySelectorAll(".ticket-adde-color");
 const tickerContainerBox = document.querySelector(".ticket-container");
+const deleteButton = document.querySelector(".delete-button-container");
+const deleteIcon = document.getElementById("deleteIcon");
+const colorFilterContainer = document.querySelector(".nav-color-container");
+const showAllButton = document.querySelector(".show-all-button-container");
 
 let currentTaskAdderSelectedColor = "red";
 
 let taskArray = []; // to store the task
+
+let isDelete = false;
 
 let colorArray = ["red", "blue", "green", "black"];
 
 let lockButtonSvg = `<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24" height="24"  fill="currentColor" >  <path    d="M19 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C15.866 2 19 5.13401 19 9V10ZM17 10V9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9V10H17ZM11 14V18H13V14H11Z"  ></path> </svg>`;
 
 let unlockButtonSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M7 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C14.7405 2 17.1131 3.5748 18.2624 5.86882L16.4731 6.76344C15.6522 5.12486 13.9575 4 12 4C9.23858 4 7 6.23858 7 9V10ZM5 12V20H19V12H5ZM10 15H14V17H10V15Z"></path></svg>`;
+
+showAllButton.addEventListener("click", function () {
+  createTickets(taskArray);
+});
+
+colorFilterContainer.addEventListener("click", function (event) {
+  let targetContainer = event.target;
+  let targetColor = targetContainer.classList[1];
+  let filteredTicket = [];
+
+  for (let i = 0; i < taskArray.length; i++) {
+    if (taskArray[i].color === targetColor) {
+      filteredTicket.push(taskArray[i]);
+    }
+  }
+  createTickets(filteredTicket);
+});
 
 function toggleTickerAdder() {
   tickerAdderBlock.classList.toggle("hide");
@@ -43,8 +65,14 @@ ticketAdderTextArea.addEventListener("keydown", function (e) {
   let task = ticketAdderTextArea.value;
 
   if (keyPressed == "Enter") {
-    // create the ticket ;
-    createTickets(task, currentTaskAdderSelectedColor);
+    let currentTaskObj = {
+      task: task,
+      color: currentTaskAdderSelectedColor,
+      id: Date.now(),
+    };
+
+    taskArray.push(currentTaskObj);
+    createTickets(taskArray);
     ticketAdderTextArea.value = "";
     toggleTickerAdder();
   }
@@ -67,14 +95,25 @@ ticketAdderTextArea.addEventListener("keydown", function (e) {
 //     </div>
 //   </div>
 // </div>
-function createTickets(task, color) {
-  let currentTaskObj = { task: task, color: color };
-  taskArray.push(currentTaskObj);
 
+deleteButton.addEventListener("click", function () {
+  if (isDelete) {
+    // delete is active
+    deleteIcon.setAttribute("fill", "#000000");
+  } else {
+    deleteIcon.setAttribute("fill", "red");
+    // delete is inactive
+  }
+  isDelete = !isDelete;
+});
+
+function createTickets(taskArrayCustom) {
   tickerContainerBox.innerHTML = "";
 
-  for (let i = 0; i < taskArray.length; i++) {
-    let taskObj = taskArray[i];
+  for (let i = 0; i < taskArrayCustom.length; i++) {
+    let taskObj = taskArrayCustom[i];
+
+    let currentId = taskObj.id;
 
     let ticketDiv = document.createElement("div");
     ticketDiv.classList.add("ticket-block");
@@ -97,6 +136,25 @@ function createTickets(task, color) {
     </div>
    
   </div>`;
+
+    // delete functionality of ticket
+
+    ticketDiv.addEventListener("dblclick", function () {
+      if (!isDelete) return;
+
+      let newArray = [];
+
+      for (let i = 0; i < taskArrayCustom.length; i++) {
+        console.log(currentId, taskArrayCustom[i].id);
+        if (taskArrayCustom[i].id !== currentId) {
+          newArray.push(taskArrayCustom[i]);
+        }
+      }
+
+      taskArray = newArray;
+
+      tickerContainerBox.removeChild(ticketDiv);
+    });
 
     const colorPanel = ticketDiv.querySelector(".ticket-color");
     // This function is handling the color change feature in ticket
