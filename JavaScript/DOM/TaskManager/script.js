@@ -19,9 +19,9 @@ let isDelete = false;
 
 let colorArray = ["red", "blue", "green", "black"];
 
-let lockButtonSvg = `<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24" height="24"  fill="currentColor" >  <path    d="M19 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C15.866 2 19 5.13401 19 9V10ZM17 10V9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9V10H17ZM11 14V18H13V14H11Z"  ></path> </svg>`;
+let lockButtonSvg = `<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24" height="24"  fill="#ffffff" >  <path    d="M19 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C15.866 2 19 5.13401 19 9V10ZM17 10V9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9V10H17ZM11 14V18H13V14H11Z"  ></path> </svg>`;
 
-let unlockButtonSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M7 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C14.7405 2 17.1131 3.5748 18.2624 5.86882L16.4731 6.76344C15.6522 5.12486 13.9575 4 12 4C9.23858 4 7 6.23858 7 9V10ZM5 12V20H19V12H5ZM10 15H14V17H10V15Z"></path></svg>`;
+let unlockButtonSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"  fill="#ffffff" ><path d="M7 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C14.7405 2 17.1131 3.5748 18.2624 5.86882L16.4731 6.76344C15.6522 5.12486 13.9575 4 12 4C9.23858 4 7 6.23858 7 9V10ZM5 12V20H19V12H5ZM10 15H14V17H10V15Z"></path></svg>`;
 
 showAllButton.addEventListener("click", function () {
   createTickets(taskArray);
@@ -30,6 +30,10 @@ showAllButton.addEventListener("click", function () {
 colorFilterContainer.addEventListener("click", function (event) {
   let targetContainer = event.target;
   let targetColor = targetContainer.classList[1];
+  const colorIndex = colorArray.indexOf(targetColor);
+
+  if (colorIndex == -1) return;
+
   let filteredTicket = [];
 
   for (let i = 0; i < taskArray.length; i++) {
@@ -51,6 +55,11 @@ ticketAdderColorContainer.addEventListener("click", function (event) {
   const targetContainer = event.target;
   // from targetContainer getting the color which user has selected
   currentTaskAdderSelectedColor = targetContainer.classList[1];
+
+  const colorIndex = colorArray.indexOf(currentTaskAdderSelectedColor);
+
+  if (colorIndex == -1) return;
+
   // removing the border from all the colors
   for (let i = 0; i < taskAdderColors.length; i++) {
     let currentContainer = taskAdderColors[i];
@@ -62,9 +71,9 @@ ticketAdderColorContainer.addEventListener("click", function (event) {
 
 ticketAdderTextArea.addEventListener("keydown", function (e) {
   let keyPressed = e.key;
-  let task = ticketAdderTextArea.value;
+  let task = ticketAdderTextArea.value.trim();
 
-  if (keyPressed == "Enter") {
+  if (keyPressed == "Enter" && task.length > 0) {
     let currentTaskObj = {
       task: task,
       color: currentTaskAdderSelectedColor,
@@ -77,24 +86,6 @@ ticketAdderTextArea.addEventListener("keydown", function (e) {
     toggleTickerAdder();
   }
 });
-//  <div class="ticket-block">
-//   <div class="ticket-color red"></div>
-//   <div class="ticket-task-area">
-//     <div class="ticker-lock-button-container">
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         viewBox="0 0 24 24"
-//         width="24"
-//         height="24"
-//         fill="currentColor"
-//       >
-//         <path
-//           d="M19 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C15.866 2 19 5.13401 19 9V10ZM17 10V9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9V10H17ZM11 14V18H13V14H11Z"
-//         ></path>
-//       </svg>
-//     </div>
-//   </div>
-// </div>
 
 deleteButton.addEventListener("click", function () {
   if (isDelete) {
@@ -119,34 +110,21 @@ function createTickets(taskArrayCustom) {
     ticketDiv.classList.add("ticket-block");
 
     ticketDiv.innerHTML = `<div class="ticket-color ${taskObj.color}"></div>
-  <div class="ticket-task-area">
-   ${taskObj.task}
-  <div class="ticker-lock-button-container">
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        width="24"
-        height="24"
-        fill="currentColor"
-      >
-        <path
-          d="M19 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C15.866 2 19 5.13401 19 9V10ZM17 10V9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9V10H17ZM11 14V18H13V14H11Z"
-        ></path>
-      </svg>
+    <div class="ticket-task-area">
+     ${taskObj.task}
     </div>
-   
-  </div>`;
+     <div class="ticker-lock-button-container">
+      ${lockButtonSvg}
+      </div>`;
 
     // delete functionality of ticket
-
     ticketDiv.addEventListener("dblclick", function () {
       if (!isDelete) return;
 
       let newArray = [];
 
-      for (let i = 0; i < taskArrayCustom.length; i++) {
-        console.log(currentId, taskArrayCustom[i].id);
-        if (taskArrayCustom[i].id !== currentId) {
+      for (let i = 0; i < taskArray.length; i++) {
+        if (taskArray[i].id !== currentId) {
           newArray.push(taskArrayCustom[i]);
         }
       }
@@ -167,7 +145,6 @@ function createTickets(taskArrayCustom) {
           currentColorIdx = j;
         }
       }
-
       let nextColorIdx = (currentColorIdx + 1) % colorArray.length;
       colorPanel.classList.remove(currentColor);
       taskObj.color = colorArray[nextColorIdx];

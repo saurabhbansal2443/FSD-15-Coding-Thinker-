@@ -5,7 +5,7 @@ const colorInput = document.getElementById("colorinput");
 const shapeInput = document.getElementById("shape");
 const textInput = document.getElementById("text");
 
-button.addEventListener("click", function () {
+function helper() {
   console.dir(input);
   const numberOfBoxes = input.valueAsNumber;
   const backgroundColor = colorInput.value;
@@ -26,4 +26,6 @@ button.addEventListener("click", function () {
     box.innerText = textInputValue;
     boxContainer.appendChild(box);
   }
-});
+}
+
+button.addEventListener("click", helper);

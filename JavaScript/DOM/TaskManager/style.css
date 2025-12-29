@@ -71,6 +71,7 @@
   border-radius: 4px;
   height: 35vh;
   width: 15%;
+  position: relative;
 }
 .ticket-color {
   height: 10%;
@@ -82,7 +83,7 @@
   text-overflow: wrap;
   padding: 10;
   color: #ffffff;
-  position: relative;
+
   height: 90%;
   width: 100%;
   background-color: #456882;

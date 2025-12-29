@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .Grandparent {
+        height: 150px;
+        width: 150px;
+        border: 2px solid red;
+      }
+      .parent {
+        height: 100px;
+        width: 100px;
+        border: 2px solid blue;
+      }
+
+      .child {
+        height: 50px;
+        width: 50px;
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="Grandparent">
+      Grandparent
+      <div class="parent">
+        Parent
+        <div class="child">child</div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let grandParent = document.querySelector(".Grandparent");
+    let parent = document.querySelector(".parent");
+    let child = document.querySelector(".child");
+
+    grandParent.addEventListener("click", function () {
+      console.log("Grand Parent clicked ");
+    }, {capture : true });
+
+    parent.addEventListener("click", function () {
+
+      console.log(" Parent clicked ");
+    }, {capture : true });
+
+    child.addEventListener("click", function (event) {
+        // event.stopPropagation();
+      console.log("child clicked ");
+    }, {capture : true });
+
+    // localStorage.setItem("Theme" , "dark")
+
+    let theme = localStorage.getItem("Theme")
+
+    console.log( theme )
+
+  </script>
+</html>
