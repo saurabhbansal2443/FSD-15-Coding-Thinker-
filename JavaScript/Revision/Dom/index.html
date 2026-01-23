@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="prev">Previous</button>
+    <div class="reviewContainer"></div>
+    <button class="next">Next</button>
+  </body>
+  <script>
+    const data = ["task1", "task2", "task3"];
+    const prevBtn = document.querySelector(".prev");
+    const nextBtn = document.querySelector(".next");
+    const container = document.querySelector(".reviewContainer");
+
+    let idx = 0;
+    container.innerText = data[idx];
+    prevBtn.addEventListener("click", function () {
+      if (idx == 0) {
+        idx = data.length - 1;
+      } else {
+        idx--;
+      }
+      container.innerText = data[idx];
+    });
+    nextBtn.addEventListener("click", function () {
+      if (idx == data.length - 1) {
+        idx = 0;
+      } else {
+        idx++;
+      }
+      container.innerText = data[idx];
+    });
+  </script>
+</html>
