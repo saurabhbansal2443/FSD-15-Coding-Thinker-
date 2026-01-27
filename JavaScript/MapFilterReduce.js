@@ -11,7 +11,6 @@
 // }
 
 // console.log(arr.forEach(double));
-
 // console.log(arr);
 
 // MAP

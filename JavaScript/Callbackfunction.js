@@ -22,4 +22,13 @@
 
 // console.log(calc(2, 4, sum));
 
+console.log("Start");
 
+function abc() {
+  setTimeout(function () {
+    console.log("abc calledx");
+  }, 2000);
+}
+abc()
+
+console.log("End");
