@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function makeDough(raw) {
+      let doughPromise = new Promise(function (resolve, reject) {
+        if (raw) {
+          setTimeout(function () {
+            let dough = "dough";
+            resolve(dough);
+          }, 2000);
+        } else {
+          reject("No raw material provided");
+        }
+      });
+      return doughPromise;
+    }
+
+    function makeBase(dough) {
+      let basePromise = new Promise(function (resolve, reject) {
+        if (dough) {
+          setTimeout(function () {
+            let base = dough + "->" + "heat";
+            resolve(base);
+          }, 2000);
+        } else {
+          reject("No dough  provided");
+        }
+      });
+      return basePromise;
+    }
+
+    function addTopings(base) {
+      let topingsPromise = new Promise(function (resolve, reject) {
+        if (base) {
+          setTimeout(function () {
+            let rawPizza = base + "->" + "Veggies";
+            resolve(rawPizza);
+          }, 2000);
+        } else {
+          reject("No base  provided");
+        }
+      });
+      return topingsPromise;
+    }
+
+    console.log("Start");
+    // makeDough("maida")
+    //   .then(function (dough) {
+    //     console.log("dough from promise  ->", dough);
+    //     return makeBase();
+    //   })
+    //   .then(function (base) {
+    //     console.log("Base", base);
+    //     return addTopings(base);
+    //   })
+    //   .then(function (rawPizza) {
+    //     console.log("rawPizza ", rawPizza);
+    //   })
+    //   .catch(function (err) {
+    //     console.log(err);
+    //   });
+
+    async function makePizza() {
+      let dough = await makeDough("maida");
+      console.log(dough);
+      let base = await makeBase(dough);
+      console.log(base);
+      let rawPizza = await addTopings(base);
+      console.log(rawPizza);
+    }
+
+    makePizza(); 
+    console.log("End");
+  </script>
+</html>
