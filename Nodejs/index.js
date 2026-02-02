@@ -1,3 +1,3 @@
-const mathObj= require("./Maths.js");
+import { sum, sub, mult } from "./Maths.js";
 
-console.log(mathObj.sum(2,3));
+console.log(sum(2, 3));

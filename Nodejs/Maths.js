@@ -1,16 +1,16 @@
-function sum(a, b) {
+export function sum(a, b) {
   return a + b;
 }
-function sub(a, b) {
+export function sub(a, b) {
   return a - b;
 }
 
-function mult(a, b) {
+export function mult(a, b) {
   return a * b;
 }
-
-module.exports = {
-  sum,
-  sub,
-  mult,
-};
+// OLD WAY 
+// module.exports = {
+//   sum,
+//   sub,
+//   mult, 
+// };
