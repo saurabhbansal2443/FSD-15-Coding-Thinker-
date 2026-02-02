@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="plus">PLUS</button>
+    <p>0</p>
+    <button id="minus">MINUS</button>
+  </body>
+  <script>
+    let plusBtn = document.getElementById("plus");
+    let minusBtn = document.getElementById("minus");
+    let ptag = document.querySelector("p");
+
+    // localstorage.setItem(key,value)
+    // localstorage.getItem(key)
+
+    let count = 0;
+
+    (function updatePrevValue() {
+      let defaultValue = localStorage.getItem("counter");
+
+      if (defaultValue) {
+        count = Number(defaultValue);
+        ptag.innerHTML = defaultValue;
+      }
+    })();
+
+    plusBtn.addEventListener("click", () => {
+      count++;
+      ptag.innerHTML = count;
+      localStorage.setItem("counter", count + "");
+    });
+    minusBtn.addEventListener("click", () => {
+      count--;
+      ptag.innerHTML = count;
+      localStorage.setItem("counter", count + "");
+    });
+  </script>
+</html>
