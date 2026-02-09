@@ -47,4 +47,5 @@ import fs from "fs";
 // fs.unlinkSync('./test.txt')
 
 // fs.mkdirSync('./test')
+
 fs.rmdirSync('./test')
