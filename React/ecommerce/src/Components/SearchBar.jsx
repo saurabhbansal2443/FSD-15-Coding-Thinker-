@@ -26,7 +26,7 @@ const SearchBar = () => {
     searchQuery.trim().length > 0 && searchSuggestion.length > 0;
 
   return (
-    <div className="w-2/8 h-3/4">
+    <div className="w-2/8 h-3/4 z-20">
       <input
         onChange={(e) => {
           setSearchQuery(e.target.value);
@@ -35,7 +35,7 @@ const SearchBar = () => {
         type="text"
       />
       {showSearchSuggestion && (
-        <div className="bg-white rounded-xl border-2 border-gray-200 p-3 mt-1">
+        <div className="bg-white rounded-xl border-2 border-gray-200 p-3 mt-1 z-20">
           {searchSuggestion.map((pObj) => {
             return (
               <div className="bg-gray-100 mb-1 p-2 rounded-xl">

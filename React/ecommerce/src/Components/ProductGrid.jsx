@@ -33,8 +33,8 @@ const ProductGrid = () => {
   }
 
   return (
-    <div className="flex justify-center items-center w-screen flex-col">
-      <div className="flex justify-evenly w-screen min-h-screen flex-wrap gap-5 mt-7">
+    <div className="flex justify-center items-center w-screen flex- z-10">
+      <div className="flex justify-evenly w-screen min-h-screen flex-wrap gap-5 mt-7 z-10">
         {productData.map((pObj) => (
           <ProductCard key={pObj.id} data={pObj} />
         ))}
