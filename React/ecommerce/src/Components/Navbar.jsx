@@ -1,12 +1,15 @@
 import React from "react";
 import SearchBar from "./SearchBar";
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ hideSearchBar = false }) => {
   return (
     <div className="h-12 w-screen border-2 border-blue-300 bg-blue-300 flex items-center justify-around">
-      <p className="text-2xl text-white font-extrabold">Shopsy</p>
+      <Link to="/" className="text-2xl text-white font-extrabold">
+        Shopsy
+      </Link>
 
-      <SearchBar />
+      {!hideSearchBar && <SearchBar />}
 
       <div className="flex justify-between items-center w-1/8">
         <p className="text-xl text-white ">Wishlist</p>

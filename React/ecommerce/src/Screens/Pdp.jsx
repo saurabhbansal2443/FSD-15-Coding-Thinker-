@@ -1,7 +1,17 @@
 import React from "react";
+import Navbar from "../Components/Navbar";
+import { useParams } from "react-router-dom";
 
 const Pdp = () => {
-  return <div>PDP component</div>;
+  const { id } = useParams();
+
+  
+
+  return (
+    <>
+      <Navbar hideSearchBar={true} />
+    </>
+  );
 };
 
 export default Pdp;

@@ -1,10 +1,15 @@
 import React from "react";
 import Star from "../Icons/Star";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ data }) => {
-  const { title, price, discountPercentage, rating, brand, thumbnail } = data;
+  const { title, price, discountPercentage, rating, brand, thumbnail, id } =
+    data;
   return (
-    <div className="w-[20rem] h-[40vh] bg-gray-100 rounded-xl flex  items-center flex-col justify-start  overflow-hidden p-2">
+    <Link
+      to={`/products/${id}`}
+      className="w-[20rem] h-[40vh] bg-gray-100 rounded-xl flex  items-center flex-col justify-start  overflow-hidden p-2"
+    >
       <img
         className="h-[70%] w-full bg-white  rounded-xl"
         src={thumbnail}
@@ -26,7 +31,7 @@ const ProductCard = ({ data }) => {
           <p className="pl-1">{rating}</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
