@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import { useParams } from "react-router-dom";
 import PdpSkeleton from "../Components/PdpSkeleton";
+import ProductReviews from "../Components/ProductReviews";
 
 const Pdp = () => {
   const { id } = useParams();
@@ -127,21 +128,7 @@ const Pdp = () => {
           </div>
 
           {/* Reviews Section */}
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold mb-6">Customer Reviews</h2>
-
-            <div className="space-y-6">
-              {productData.reviews.map((review, index) => (
-                <div key={index} className="border rounded-lg p-4 bg-gray-50">
-                  <div className="flex justify-between">
-                    <h4 className="font-semibold">{review.reviewerName}</h4>
-                    <span className="text-yellow-500">⭐ {review.rating}</span>
-                  </div>
-                  <p className="text-gray-600 mt-2">{review.comment}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ProductReviews reviews={productData.reviews} />
         </div>
       )}
     </>
