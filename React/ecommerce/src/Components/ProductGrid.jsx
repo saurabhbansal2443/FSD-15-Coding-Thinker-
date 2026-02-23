@@ -10,7 +10,7 @@ const ProductGrid = () => {
 
   async function getData() {
     try {
-      let limit = 15;
+      let limit = 16;
       let skip = (currentPage - 1) * limit;
       let apiData = await fetch(
         `https://dummyjson.com/products?limit=${limit}&skip=${skip}`,
