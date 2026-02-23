@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { act, useState } from "react";
 import ChevronDown from "../Icons/ChevronDown";
 import ChevronUp from "../Icons/ChevronUp";
 
 const ProductReviews = ({ reviews }) => {
+  const [activeIndex, setActiveIndex] = useState(null);
   return (
     <div className="mt-16">
       <h2 className="text-2xl font-bold mb-6">Customer Reviews</h2>
 
       <div className="space-y-6">
         {reviews.map((review, index) => {
-          return <ReviewAccordian review={review} index={index} />;
+          return (
+            <ReviewAccordian
+              review={review}
+              index={index}
+              setActiveIndex={setActiveIndex}
+              activeIndex={activeIndex}
+            />
+          );
         })}
       </div>
     </div>
@@ -18,14 +26,14 @@ const ProductReviews = ({ reviews }) => {
 
 export default ProductReviews;
 
-const ReviewAccordian = ({ review, index }) => {
+const ReviewAccordian = ({ review, index, setActiveIndex, activeIndex }) => {
   let { reviewerName, rating, comment } = review;
-  let [showReview, setShowReview] = useState(false);
+
   return (
     <div key={index} className="border rounded-lg p-4 bg-gray-50">
       <div
         onClick={() => {
-          setShowReview(!showReview);
+          activeIndex == index ? setActiveIndex(null) : setActiveIndex(index);
         }}
         className="flex justify-between"
       >
@@ -33,9 +41,9 @@ const ReviewAccordian = ({ review, index }) => {
           <h4 className="font-semibold pr-5">{reviewerName}</h4>
           <span className="text-yellow-500">⭐ {rating}</span>
         </div>
-        {showReview ? <ChevronUp /> : <ChevronDown />}
+        {index == activeIndex ? <ChevronUp /> : <ChevronDown />}
       </div>
-      {showReview && <p className="text-gray-600 mt-2">{comment}</p>}
+      {index == activeIndex && <p className="text-gray-600 mt-2">{comment}</p>}
     </div>
   );
 };
