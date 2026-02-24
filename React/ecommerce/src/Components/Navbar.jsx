@@ -1,8 +1,12 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../Store/ThemeProvider";
+import { useContext } from "react";
 
 const Navbar = ({ hideSearchBar = false }) => {
+  const data = useContext(ThemeContext);
+  console.log(data);
   return (
     <div className="h-12 w-screen border-2 border-blue-300 bg-blue-300 flex items-center justify-around">
       <Link to="/" className="text-2xl text-white font-extrabold">
