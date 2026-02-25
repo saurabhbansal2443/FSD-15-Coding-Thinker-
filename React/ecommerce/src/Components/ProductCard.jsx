@@ -1,22 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import Star from "../Icons/Star";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../Store/ThemeProvider";
 
 const ProductCard = ({ data }) => {
+  const { theme } = useContext(ThemeContext);
   const { title, price, discountPercentage, rating, brand, thumbnail, id } =
     data;
+  const light =
+    "w-[20rem] h-[40vh] bg-gray-100 rounded-xl flex  items-center flex-col justify-start  overflow-hidden p-2";
+  const dark =
+    "w-[20rem] h-[40vh] bg-gray-400 rounded-xl flex  items-center flex-col justify-start  overflow-hidden p-2";
   return (
-    <Link
-      to={`/products/${id}`}
-      className="w-[20rem] h-[40vh] bg-gray-100 rounded-xl flex  items-center flex-col justify-start  overflow-hidden p-2"
-    >
+    <Link to={`/products/${id}`} className={theme == "light" ? light : dark}>
       <img
-        className="h-[70%] w-full bg-white  rounded-xl"
+        className={
+          theme == "light"
+            ? "h-[70%] bg-white w-full rounded-xl"
+            : "h-[70%] bg-gray-300 w-full rounded-xl"
+        }
         src={thumbnail}
         alt=""
       />
       <div className="w-full">
-        <p className="text-xs pt-2 text-gray-400 min-h-6">{brand}</p>
+        <p
+          className={
+            theme == "light"
+              ? "text-xs pt-2 text-gray-400 min-h-6"
+              : "text-xs pt-2 text-white min-h-6"
+          }
+        >
+          {brand}
+        </p>
         <p className=" text-[15px]  text-black font-bold  overflow-hidden max-w-fit text-ellipsis whitespace-nowrap">
           {title}
         </p>

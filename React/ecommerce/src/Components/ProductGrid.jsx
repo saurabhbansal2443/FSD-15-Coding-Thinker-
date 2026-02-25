@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import ProductCardSkeleton from "./ProductCardSkeleton";
+import { ThemeContext } from "../Store/ThemeProvider";
 
 const ProductGrid = () => {
+  const { theme } = useContext(ThemeContext);
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -38,8 +40,12 @@ const ProductGrid = () => {
   let checedBtn = "join-item btn btn-square bg-blue-500";
   let uncheckdBtn = "join-item btn btn-square";
 
+  const light = "flex justify-center items-center w-screen flex- z-10 flex-col";
+  const dark =
+    "flex bg-gray-500 justify-center items-center w-screen flex- z-10 flex-col";
+
   return (
-    <div className="flex justify-center items-center w-screen flex- z-10 flex-col">
+    <div className={theme == "light" ? light : dark}>
       <div className="flex justify-evenly w-screen min-h-screen flex-wrap gap-5 mt-7 z-10">
         {productData.map((pObj) => (
           <ProductCard key={pObj.id} data={pObj} />

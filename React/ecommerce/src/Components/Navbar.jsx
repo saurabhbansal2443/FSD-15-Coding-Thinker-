@@ -7,8 +7,6 @@ import { useContext } from "react";
 const Navbar = ({ hideSearchBar = false }) => {
   const { theme, setTheme } = useContext(ThemeContext);
 
-  console.log(theme);
-
   const light =
     "h-12 w-screen border-2 border-blue-300 bg-blue-300 flex items-center justify-around";
   const dark =
