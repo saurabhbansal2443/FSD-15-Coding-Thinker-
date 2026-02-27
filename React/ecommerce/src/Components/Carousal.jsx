@@ -5,6 +5,7 @@ import image3 from "../Assets/image3.webp";
 import image4 from "../Assets/image4.webp";
 import ChevronLeft from "../Icons/ChevronLeft";
 import ChevronRight from "../Icons/ChevronRight";
+
 let images = [image1, image2, image3, image4];
 const Carousal = () => {
   const [activeIndex, setActiveIndex] = useState(1);
@@ -18,21 +19,42 @@ const Carousal = () => {
   }
   const timerRef = useRef(null);
 
-  useEffect(() => {
-    timerRef.current = setInterval(() => {
+  function clearTimer() {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+  }
 
+  function addTimer() {
+    timerRef.current = setInterval(() => {
+      console.log("Timer");
       setActiveIndex((prev) => {
         return (prev + 1) % images.length;
       });
-    }, 1000);
+    }, 3000);
+  }
 
-    return () => {
-      clearInterval(timerRef.current);
-    };
+  useEffect(() => {
+    clearTimer();
+    addTimer();
+    return clearTimer;
   }, []);
 
+  function handleMouseEnter() {
+    clearTimer();
+  }
+
+  function handleMouseLeave() {
+    clearTimer();
+    addTimer();
+  }
+
   return (
-    <div className="h-[45vh] w-screen relative">
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="h-[45vh] w-screen relative"
+    >
       <div
         onClick={handleLeft}
         className="bg-white h-10 w-8 absolute left-0 flex justify-center items-center  top-[20vh] "
