@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import image1 from "../Assets/image1.webp";
 import image2 from "../Assets/image2.webp";
 import image3 from "../Assets/image3.webp";
@@ -16,6 +16,20 @@ const Carousal = () => {
   function handleRight() {
     setActiveIndex((activeIndex + 1) % images.length);
   }
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+
+      setActiveIndex((prev) => {
+        return (prev + 1) % images.length;
+      });
+    }, 1000);
+
+    return () => {
+      clearInterval(timerRef.current);
+    };
+  }, []);
 
   return (
     <div className="h-[45vh] w-screen relative">
