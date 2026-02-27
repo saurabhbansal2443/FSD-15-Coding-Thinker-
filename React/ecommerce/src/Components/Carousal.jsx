@@ -5,16 +5,25 @@ import image3 from "../Assets/image3.webp";
 import image4 from "../Assets/image4.webp";
 import ChevronLeft from "../Icons/ChevronLeft";
 import ChevronRight from "../Icons/ChevronRight";
+import { useNavigate } from "react-router-dom";
 
-let images = [image1, image2, image3, image4];
+let images = [
+  { image: image1, url: "beauty" },
+  { image: image2, url: "fragrances" },
+  { image: image3, url: "furniture" },
+  { image: image4, url: "groceries" },
+];
 const Carousal = () => {
+  const naviagtion = useNavigate();
   const [activeIndex, setActiveIndex] = useState(1);
 
-  function handleLeft() {
+  function handleLeft(e) {
+    e.stopPropagation();
     setActiveIndex((activeIndex - 1 + images.length) % images.length);
   }
 
-  function handleRight() {
+  function handleRight(e) {
+    e.stopPropagation();
     setActiveIndex((activeIndex + 1) % images.length);
   }
   const timerRef = useRef(null);
@@ -27,7 +36,6 @@ const Carousal = () => {
 
   function addTimer() {
     timerRef.current = setInterval(() => {
-      console.log("Timer");
       setActiveIndex((prev) => {
         return (prev + 1) % images.length;
       });
@@ -49,26 +57,35 @@ const Carousal = () => {
     addTimer();
   }
 
+  function handleClick() {
+    naviagtion(`/category/${images[activeIndex].url}`);
+  }
+
   return (
     <div
+      onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className="h-[45vh] w-screen relative"
     >
       <div
-        onClick={handleLeft}
+        onClick={(e) => {
+          handleLeft(e);
+        }}
         className="bg-white h-10 w-8 absolute left-0 flex justify-center items-center  top-[20vh] "
       >
         <ChevronLeft />
       </div>
       <div
-        onClick={handleRight}
+        onClick={(e) => {
+          handleRight(e);
+        }}
         className="bg-white h-10 w-8 absolute right-0 flex justify-center items-center  top-[20vh] "
       >
         <ChevronRight />
       </div>
       <div className="h-full w-full">
-        <img className="h-full w-full" src={images[activeIndex]} alt="" />
+        <img className="h-full w-full" src={images[activeIndex].image} alt="" />
       </div>
     </div>
   );
