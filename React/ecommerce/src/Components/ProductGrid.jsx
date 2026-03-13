@@ -37,10 +37,10 @@ const ProductGrid = () => {
     return <p>...api failing </p>;
   }
 
-  let checedBtn = "join-item btn btn-square bg-blue-500";
+  let checedBtn = "join-item btn btn-square bg-blue-500 border-none";
   let uncheckdBtn = "join-item btn btn-square";
 
-  const light = "flex justify-center items-center w-screen flex- z-10 flex-col";
+  const light = "flex justify-center items-center w-screen flex- z-10 flex-col text-white";
   const dark =
     "flex bg-gray-500 justify-center items-center w-screen flex- z-10 flex-col";
 

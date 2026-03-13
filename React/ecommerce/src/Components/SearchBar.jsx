@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -38,9 +39,12 @@ const SearchBar = () => {
         <div className="bg-white rounded-xl border-2 border-gray-200 p-3 mt-1 z-20">
           {searchSuggestion.map((pObj) => {
             return (
-              <div className="bg-gray-100 mb-1 p-2 rounded-xl">
+              <Link
+                to={`/products/${pObj.id}`}
+                className="bg-gray-100 mb-1 p-2 rounded-xl"
+              >
                 <p className="text-sm text-gray-600">{pObj.title}</p>
-              </div>
+              </Link>
             );
           })}
         </div>
