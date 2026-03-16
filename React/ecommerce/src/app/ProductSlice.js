@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   productDataMap: {},
-  ids: {},
 };
 
 export const ProductSlice = createSlice({
@@ -10,8 +9,11 @@ export const ProductSlice = createSlice({
   initialState,
   reducers: {
     addProductDataById: (state, action) => {
-      const productData = action.payload;
-      state.productDataMap[productData.id] = productData;
+      const productDataArray = action.payload;
+      for (let i = 0; i < productDataArray.length; i++) {
+        const productData = productDataArray[i];
+        state.productDataMap[productData.id] = productData;
+      }
     },
   },
 });

@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import ProductCardSkeleton from "./ProductCardSkeleton";
 import { ThemeContext } from "../Store/ThemeProvider";
+import { useDispatch } from "react-redux";
+import { addProductDataById } from "../app/ProductSlice";
 
 const ProductGrid = () => {
   const { theme } = useContext(ThemeContext);
@@ -9,6 +11,7 @@ const ProductGrid = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const dispatch = useDispatch();
 
   async function getData() {
     try {
@@ -19,6 +22,7 @@ const ProductGrid = () => {
       );
       let jsonData = await apiData.json();
       setProductData(jsonData.products);
+      dispatch(addProductDataById(jsonData.products));
     } catch (err) {
       console.log(err);
       setError(true);
@@ -40,7 +44,8 @@ const ProductGrid = () => {
   let checedBtn = "join-item btn btn-square bg-blue-500 border-none";
   let uncheckdBtn = "join-item btn btn-square";
 
-  const light = "flex justify-center items-center w-screen flex- z-10 flex-col text-white";
+  const light =
+    "flex justify-center items-center w-screen flex- z-10 flex-col text-white";
   const dark =
     "flex bg-gray-500 justify-center items-center w-screen flex- z-10 flex-col";
 

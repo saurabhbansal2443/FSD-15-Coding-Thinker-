@@ -18,10 +18,11 @@ const Pdp = () => {
 
   async function getData() {
     try {
+      console.log("Api data ", id);
       let apiData = await fetch(`https://dummyjson.com/products/${id}`);
       let jsonData = await apiData.json();
       setProductData(jsonData);
-      dispatch(addProductDataById(jsonData));// saving the data in redux store 
+      dispatch(addProductDataById([jsonData])); // saving the data in redux store
       setSelectedImage(jsonData.thumbnail);
     } catch (err) {
       setError("Something went wrong!");
