@@ -8,7 +8,6 @@ import { addProductsArrayByPage } from "../app/ProductSlice";
 
 const ProductGrid = () => {
   const homePageMap = useSelector((store) => store.product.homePageMap);
-  console.log("homePageMap", homePageMap);
   const { theme } = useContext(ThemeContext);
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,7 +19,6 @@ const ProductGrid = () => {
     try {
       let limit = 16;
       let skip = (currentPage - 1) * limit;
-      console.log(" Api called for home page ", currentPage);
       let apiData = await fetch(
         `https://dummyjson.com/products?limit=${limit}&skip=${skip}`,
       );

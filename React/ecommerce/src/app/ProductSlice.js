@@ -10,6 +10,7 @@ export const ProductSlice = createSlice({
   initialState,
   reducers: {
     addProductDataById: (state, action) => {
+      // payloadStructure ---> [{}]
       const productDataArray = action.payload;
       for (let i = 0; i < productDataArray.length; i++) {
         const productData = productDataArray[i];

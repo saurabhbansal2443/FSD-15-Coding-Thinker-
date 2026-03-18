@@ -3,50 +3,19 @@ import Navbar from "../Components/Navbar";
 import { useParams } from "react-router-dom";
 import PdpSkeleton from "../Components/PdpSkeleton";
 import ProductReviews from "../Components/ProductReviews";
-import { useSelector, useDispatch } from "react-redux";
-import { addProductDataById } from "../app/ProductSlice";
+import UseGetProductById from "../Hooks/UseGetProductById";
 
 const Pdp = () => {
-  const productDataMap = useSelector((state) => state.product.productDataMap);
-  const dispatch = useDispatch();
-  console.log("allProductData", productDataMap);
   const { id } = useParams();
-  const [productData, setProductData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { loading, error, productData } = UseGetProductById(id);
+
   const [selectedImage, setSelectedImage] = useState(null);
 
-  async function getData() {
-    try {
-      console.log("Api data ", id);
-      let apiData = await fetch(`https://dummyjson.com/products/${id}`);
-      let jsonData = await apiData.json();
-      setProductData(jsonData);
-      dispatch(addProductDataById([jsonData])); // saving the data in redux store
-      setSelectedImage(jsonData.thumbnail);
-    } catch (err) {
-      setError("Something went wrong!");
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
-    if (id) {
-      const cacheData = productDataMap[id];
-
-      if (cacheData) {
-        setLoading(false);
-        setProductData(cacheData);
-        setSelectedImage(cacheData.thumbnail);
-      } else {
-        getData();
-      }
-    } else {
-      setError("Product Id not found");
-      setLoading(false);
+    if (!loading && productData.thumbnail) {
+      setSelectedImage(productData.thumbnail);
     }
-  }, [id]);
+  }, [productData]);
 
   const discountedPrice =
     productData &&
