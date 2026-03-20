@@ -4,30 +4,12 @@ import { useParams } from "react-router-dom";
 import { ThemeContext } from "../Store/ThemeProvider";
 import ProductCardSkeleton from "../Components/ProductCardSkeleton";
 import ProductCard from "../Components/ProductCard";
+import UseProductCategory from "../Hooks/UseProductCategory";
 
 const ProductCategory = () => {
   const { theme } = useContext(ThemeContext);
-  const [productData, setProductData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const { url: category } = useParams(); // used alias (for a diffrent name of Url as category )
-
-  async function getData() {
-    try {
-      let apiData = await fetch(
-        `https://dummyjson.com/products/category/${category}`,
-      );
-      let jsonData = await apiData.json();
-      setProductData(jsonData.products);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    getData();
-  }, []);
+  const { productData, loading } = UseProductCategory(category);
 
   if (loading) {
     return <ProductCardSkeleton />;

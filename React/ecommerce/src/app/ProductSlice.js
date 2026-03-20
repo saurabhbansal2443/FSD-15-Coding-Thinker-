@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   productDataMap: {},
   homePageMap: {},
+  categoryMap: {},
 };
 
 export const ProductSlice = createSlice({
@@ -23,9 +24,18 @@ export const ProductSlice = createSlice({
       const productArray = action.payload.productArray;
       state.homePageMap[pageNumber] = productArray;
     },
+    addCatgeoryProductsData: (state, action) => {
+      // payload Structure ---> {catgeory : 'furniture' , productArray : [{},{}]}
+      const productCatgeory = action.payload.catgeory;
+      const productArray = action.payload.productArray;
+      state.categoryMap[productCatgeory] = productArray;
+    },
   },
 });
 
-export const { addProductDataById, addProductsArrayByPage } =
-  ProductSlice.actions;
+export const {
+  addProductDataById,
+  addProductsArrayByPage,
+  addCatgeoryProductsData,
+} = ProductSlice.actions;
 export default ProductSlice.reducer;
