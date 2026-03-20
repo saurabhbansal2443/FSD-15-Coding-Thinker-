@@ -31,7 +31,9 @@ const Navbar = ({ hideSearchBar = false }) => {
             className="toggle border-indigo-600 bg-indigo-500 checked:border-orange-500 checked:bg-orange-400 checked:text-orange-800"
           />
         </div>
-        <p className="text-xl text-white ">Wishlist</p>
+        <Link to={`/wishlist`} className="text-xl text-white ">
+          Wishlist
+        </Link>
         <p className="text-xl text-white ">Cart</p>
       </div>
     </div>

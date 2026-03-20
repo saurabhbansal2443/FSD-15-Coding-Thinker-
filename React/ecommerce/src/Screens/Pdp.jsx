@@ -105,7 +105,7 @@ const Pdp = () => {
                 </button>
 
                 <button className="border border-black px-6 py-3 rounded-lg hover:bg-gray-100 transition">
-                  Buy Now
+                  Add to Wishlist
                 </button>
               </div>
             </div>

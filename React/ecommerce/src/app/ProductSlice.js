@@ -4,6 +4,7 @@ const initialState = {
   productDataMap: {},
   homePageMap: {},
   categoryMap: {},
+  wishlistData: {},
 };
 
 export const ProductSlice = createSlice({
@@ -29,6 +30,16 @@ export const ProductSlice = createSlice({
       const productCatgeory = action.payload.catgeory;
       const productArray = action.payload.productArray;
       state.categoryMap[productCatgeory] = productArray;
+    },
+    addToWishlist: (state, action) => {
+      //payload structure ---> productData
+      const productData = action.payload;
+      state.wishlistData[productData.id] = productData;
+    },
+    removeFromWishlist: (state, action) => {
+      //payload structure ---> id
+      const id = action.payload;
+      delete state.wishlistData[id];
     },
   },
 });
