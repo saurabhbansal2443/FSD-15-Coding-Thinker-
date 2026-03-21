@@ -4,19 +4,27 @@ import { Link } from "react-router-dom";
 import { ThemeContext } from "../Store/ThemeProvider";
 import Wishlist from "../Icons/Wishlist";
 import UseIsProductInWishlist from "../Hooks/UseIsProductInWishlist";
+import UseWishlistproduct from "../Hooks/UseWishlistproduct";
 
 const ProductCard = ({ data }) => {
   const { theme } = useContext(ThemeContext);
   const { title, price, discountPercentage, rating, brand, thumbnail, id } =
     data;
-  const isProductInWishlist = UseIsProductInWishlist(id);
+  const { isProductInWishlist, handleWishlist } = UseWishlistproduct(data);
   const light =
     "w-[20rem] h-[40vh] bg-gray-100 relative rounded-xl flex  items-center flex-col justify-start  overflow-hidden p-2";
   const dark =
     "w-[20rem] h-[40vh] bg-gray-400 relative rounded-xl flex  items-center flex-col justify-start  overflow-hidden p-2";
   return (
     <Link to={`/products/${id}`} className={theme == "light" ? light : dark}>
-      <div className="absolute right-3 top-3">
+      <div
+        onClick={(e) => {
+          // e.stopPropagation();
+          e.preventDefault()
+          handleWishlist();
+        }}
+        className="absolute right-3 top-3"
+      >
         <Wishlist fill={isProductInWishlist ? "red" : "#E5E4E2"} />
       </div>
       <img

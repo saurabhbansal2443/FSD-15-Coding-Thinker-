@@ -48,5 +48,7 @@ export const {
   addProductDataById,
   addProductsArrayByPage,
   addCatgeoryProductsData,
+  addToWishlist,
+  removeFromWishlist,
 } = ProductSlice.actions;
 export default ProductSlice.reducer;

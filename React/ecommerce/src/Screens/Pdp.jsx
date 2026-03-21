@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom";
 import PdpSkeleton from "../Components/PdpSkeleton";
 import ProductReviews from "../Components/ProductReviews";
 import UseGetProductById from "../Hooks/UseGetProductById";
+import UseWishlistproduct from "../Hooks/UseWishlistproduct";
 
 const Pdp = () => {
   const { id } = useParams();
   const { loading, error, productData } = UseGetProductById(id);
-
+  const { isProductInWishlist, handleWishlist } =
+    UseWishlistproduct(productData);
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
@@ -104,8 +106,19 @@ const Pdp = () => {
                   Add to Cart
                 </button>
 
-                <button className="border border-black px-6 py-3 rounded-lg hover:bg-gray-100 transition">
-                  Add to Wishlist
+                <button
+                  onClick={handleWishlist}
+                  style={{
+                    backgroundColor: isProductInWishlist ? "#D62828" : "white",
+                    borderColor: isProductInWishlist ? "transparent" : "black",
+                    color: isProductInWishlist ? "white" : "black",
+                    width: "50%",
+                  }}
+                  className="border  px-6 py-3 rounded-lg hover:bg-gray-100 transition"
+                >
+                  {isProductInWishlist
+                    ? "Remove from wishlist"
+                    : "Add to Wishlist"}
                 </button>
               </div>
             </div>
