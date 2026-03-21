@@ -21,7 +21,7 @@ const Wishlist = () => {
             ))}
           </div>
         ) : (
-          /* Enhanced Empty State */
+         
           <div className="flex flex-col items-center justify-center mt-20 text-center">
             <div className="bg-white p-10 rounded-full shadow-sm mb-6">
               <Icon height={50} width={50} fill={"red"} />
