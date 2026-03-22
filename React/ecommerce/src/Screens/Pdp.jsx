@@ -5,12 +5,14 @@ import PdpSkeleton from "../Components/PdpSkeleton";
 import ProductReviews from "../Components/ProductReviews";
 import UseGetProductById from "../Hooks/UseGetProductById";
 import UseWishlistproduct from "../Hooks/UseWishlistproduct";
+import UseCartProduct from "../Hooks/UseCartProduct";
 
 const Pdp = () => {
   const { id } = useParams();
   const { loading, error, productData } = UseGetProductById(id);
   const { isProductInWishlist, handleWishlist } =
     UseWishlistproduct(productData);
+  const { handleCartProduct, isProductInCart } = UseCartProduct();
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
@@ -102,8 +104,17 @@ const Pdp = () => {
               </div>
 
               <div className="flex gap-4 mt-6">
-                <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
-                  Add to Cart
+                <button
+                  onClick={handleCartProduct}
+                  style={{
+                    backgroundColor: isProductInCart ? "#4CBB17" : "white",
+                    borderColor: isProductInCart ? "transparent" : "black",
+                    color: isProductInCart ? "white" : "black",
+                    width: "50%",
+                  }}
+                  className="border  px-6 py-3 rounded-lg hover:bg-gray-100 transition"
+                >
+                  {isProductInCart ? "Remove from Cart" : "Add to Cart"}
                 </button>
 
                 <button

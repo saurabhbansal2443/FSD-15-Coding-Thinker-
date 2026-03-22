@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import ThemeProvider from "./Store/ThemeProvider";
 import ProductCategory from "./Screens/ProductCategory";
 import Wishlist from "./Screens/Wishlist";
+import Cart from "./Screens/Cart";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/products/:id" element={<Pdp />} />
         <Route path="/category/:url" element={<ProductCategory />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </ThemeProvider>
   );

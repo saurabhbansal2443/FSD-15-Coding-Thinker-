@@ -34,7 +34,9 @@ const Navbar = ({ hideSearchBar = false }) => {
         <Link to={`/wishlist`} className="text-xl text-white ">
           Wishlist
         </Link>
-        <p className="text-xl text-white ">Cart</p>
+        <Link to={`/cart`} className="text-xl text-white ">
+          Cart
+        </Link>
       </div>
     </div>
   );

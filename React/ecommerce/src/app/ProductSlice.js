@@ -5,6 +5,7 @@ const initialState = {
   homePageMap: {},
   categoryMap: {},
   wishlistData: {},
+  cartData: {},
 };
 
 export const ProductSlice = createSlice({
@@ -41,6 +42,38 @@ export const ProductSlice = createSlice({
       const id = action.payload;
       delete state.wishlistData[id];
     },
+    addToCart: (state, action) => {
+      //payload structure ---> productData
+      const data = action.payload;
+      const id = data?.id;
+      const isProductInCart = state.cartData?.[id];
+
+      if (isProductInCart) {
+        state.cartData[id].qunatity += 1;
+      } else {
+        state.cartData[id] = { id: { productData: data, qunatity: 1 } };
+      }
+    },
+    decreaseQuantityInCart: (state, action) => {
+      //payload structure ---> id
+      const id = action.payload;
+      const isProductInCart = state.cartData?.[id];
+      if (isProductInCart) {
+        if (isProductInCart.qunatity == 1) {
+          delete state.cartData[id];
+        } else {
+          state.cartData[id].qunatity -= 1;
+        }
+      }
+    },
+    removeFormCart: (state, action) => {
+      //payload structure ---> id
+      const id = action.payload;
+      const isProductInCart = state.cartData?.[id];
+      if (isProductInCart) {
+        delete state.cartData[id];
+      }
+    },
   },
 });
 
@@ -50,5 +83,8 @@ export const {
   addCatgeoryProductsData,
   addToWishlist,
   removeFromWishlist,
+  addToCart,
+  decreaseQuantityInCart,
+  removeFormCart,
 } = ProductSlice.actions;
 export default ProductSlice.reducer;
