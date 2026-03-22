@@ -12,7 +12,7 @@ const Pdp = () => {
   const { loading, error, productData } = UseGetProductById(id);
   const { isProductInWishlist, handleWishlist } =
     UseWishlistproduct(productData);
-  const { handleCartProduct, isProductInCart } = UseCartProduct();
+  const { handleCartProduct, isProductInCart } = UseCartProduct(id);
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {

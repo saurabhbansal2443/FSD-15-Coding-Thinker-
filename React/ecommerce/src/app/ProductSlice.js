@@ -51,7 +51,7 @@ export const ProductSlice = createSlice({
       if (isProductInCart) {
         state.cartData[id].qunatity += 1;
       } else {
-        state.cartData[id] = { id: { productData: data, qunatity: 1 } };
+        state.cartData[id] =  { productData: data, qunatity: 1 } ;
       }
     },
     decreaseQuantityInCart: (state, action) => {
