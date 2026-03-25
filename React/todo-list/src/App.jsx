@@ -1,6 +1,8 @@
 import React from "react";
 import "./index.css";
 import { useState } from "react";
+import BackgroundColor from "./BackgroundColor";
+import Text from "./Text";
 
 const App = () => {
   let defaultTask = [];
@@ -57,6 +59,7 @@ const App = () => {
           );
         })}
       </div>
+      <Text />
     </div>
   );
 };
