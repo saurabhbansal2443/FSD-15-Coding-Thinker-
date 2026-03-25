@@ -14,7 +14,7 @@ const Navbar = ({ hideSearchBar = false }) => {
   return (
     <div className={theme == "light" ? light : dark}>
       <Link to="/" className="text-2xl text-white font-extrabold">
-        Shopsy
+        ShopCart
       </Link>
 
       {!hideSearchBar && <SearchBar />}
