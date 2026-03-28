@@ -6,7 +6,8 @@ import Wishlist from "../Icons/Wishlist";
 import UseIsProductInWishlist from "../Hooks/UseIsProductInWishlist";
 import UseWishlistproduct from "../Hooks/UseWishlistproduct";
 
-const ProductCard = ({ data }) => {
+const ProductCard2 = ({ data }) => {
+  console.log("product card render ");
   const { theme } = useContext(ThemeContext);
   const { title, price, discountPercentage, rating, brand, thumbnail, id } =
     data;
@@ -20,7 +21,7 @@ const ProductCard = ({ data }) => {
       <div
         onClick={(e) => {
           // e.stopPropagation();
-          e.preventDefault()
+          e.preventDefault();
           handleWishlist();
         }}
         className="absolute right-3 top-3"
@@ -63,5 +64,5 @@ const ProductCard = ({ data }) => {
     </Link>
   );
 };
-
+const ProductCard = React.memo(ProductCard2);
 export default ProductCard;

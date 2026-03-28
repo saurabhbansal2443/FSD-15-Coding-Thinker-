@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addProductDataById,
   addProductsArrayByPage,
 } from "../app/ProductSlice";
 
-const UseProducts = (currentPage = 1 ) => {
+const UseProducts = (currentPage = 1) => {
   const dispatch = useDispatch();
   const homePageMap = useSelector((store) => store.product.homePageMap);
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  async function getData() {
+  const getData = useCallback(async function () {
     try {
       let limit = 16;
       let skip = (currentPage - 1) * limit;
@@ -34,7 +34,7 @@ const UseProducts = (currentPage = 1 ) => {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
   useEffect(() => {
     const cacheProductData = homePageMap[currentPage];
@@ -44,7 +44,7 @@ const UseProducts = (currentPage = 1 ) => {
       setProductData(cacheProductData);
       setLoading(false);
     }
-  }, [currentPage]);
+  }, [currentPage, getData, homePageMap]);
   return { productData, loading, error };
 };
 
