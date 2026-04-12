@@ -1,0 +1,2 @@
+1) remove from cart -- product.id 
+2) Addto wishlist -- productData 

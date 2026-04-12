@@ -38,7 +38,7 @@ const ReviewAccordian = ({ review, index, setActiveIndex, activeIndex }) => {
         className="flex justify-between"
       >
         <div className="flex">
-          <h4 className="font-semibold pr-5">{reviewerName}</h4>
+          <h4 className="font-semibold pr-5 text-black">{reviewerName}</h4>
           <span className="text-yellow-500">⭐ {rating}</span>
         </div>
         {index == activeIndex ? <ChevronUp /> : <ChevronDown />}

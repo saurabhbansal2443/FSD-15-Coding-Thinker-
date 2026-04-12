@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,11 +7,12 @@ import {
   removeFormCart,
   addToCart,
 } from "../app/ProductSlice";
+import RemoveItemModal from "../Components/RemoveItemModal";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.product.cartData);
-
+  const [showModal, setShowModal] = useState(false);
   const items = Object.values(cartData);
 
   const subtotal = useMemo(() => {
@@ -21,7 +22,7 @@ const Cart = () => {
   }, [items]);
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="relative min-h-screen bg-gray-50 pb-20">
       <Navbar />
 
       <div className="max-w-5xl mx-auto p-4 md:p-8">
@@ -69,6 +70,11 @@ const Cart = () => {
                     key={product.id}
                     className="flex flex-col sm:flex-row items-center gap-6 bg-white p-5 rounded-xl shadow-sm border border-gray-100"
                   >
+                    <RemoveItemModal
+                      showModal={showModal}
+                      productData={product}
+                      setShowModal={setShowModal}
+                    />
                     {/* Product Image */}
                     <div className="w-28 h-28 bg-gray-50 rounded-lg overflow-hidden flex-shrink-0">
                       <img
@@ -96,7 +102,7 @@ const Cart = () => {
 
                       <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 mt-4">
                         {/* Quantity Controls */}
-                        <div className="flex items-center border border-gray-200 rounded-lg bg-gray-50">
+                        <div className=" text-green-500 flex items-center border border-gray-200 rounded-lg bg-gray-50">
                           <button
                             onClick={() =>
                               dispatch(decreaseQuantityInCart(product.id))
@@ -118,7 +124,10 @@ const Cart = () => {
 
                         {/* Remove Action */}
                         <button
-                          onClick={() => dispatch(removeFormCart(product.id))}
+                          onClick={() =>
+                            // dispatch(removeFormCart(product.id))
+                            setShowModal(!showModal)
+                          }
                           className="text-sm font-medium text-red-500 hover:text-red-700 flex items-center gap-1"
                         >
                           <svg

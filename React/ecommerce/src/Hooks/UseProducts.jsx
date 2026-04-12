@@ -6,6 +6,7 @@ import {
 } from "../app/ProductSlice";
 
 const UseProducts = (currentPage = 1) => {
+  console.log(currentPage);
   const dispatch = useDispatch();
   const homePageMap = useSelector((store) => store.product.homePageMap);
   const [productData, setProductData] = useState([]);
@@ -34,7 +35,7 @@ const UseProducts = (currentPage = 1) => {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     const cacheProductData = homePageMap[currentPage];
@@ -44,7 +45,8 @@ const UseProducts = (currentPage = 1) => {
       setProductData(cacheProductData);
       setLoading(false);
     }
-  }, [currentPage, getData, homePageMap]);
+  }, [currentPage]);
+  console.log(productData, currentPage);
   return { productData, loading, error };
 };
 

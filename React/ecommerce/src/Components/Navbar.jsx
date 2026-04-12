@@ -38,18 +38,22 @@ const Navbar = ({ hideSearchBar = false }) => {
           className="h-full w-20 relative text-xl text-white "
         >
           Wishlist{" "}
-          <div className=" w-4 h-4 absolute bottom-4 right-0 bg-black text-white rounded-4xl text-xs flex justify-center items-center">
-            {wishlistCount}
-          </div>
+          {wishlistCount > 0 && (
+            <div className=" w-4 h-4 absolute bottom-4 right-0 bg-black text-white rounded-4xl text-xs flex justify-center items-center">
+              {wishlistCount}
+            </div>
+          )}
         </Link>
         <Link
           to={`/cart`}
           className=" h-full w-12 relative text-xl text-white "
         >
           Cart{" "}
-          <div className=" w-4 h-4 absolute bottom-4 right-0 bg-black text-white rounded-4xl text-xs flex justify-center items-center">
-            {cartCount}
-          </div>
+          {cartCount > 0 && (
+            <div className=" w-4 h-4 absolute bottom-4 right-0 bg-black text-white rounded-4xl text-xs flex justify-center items-center">
+              {cartCount}
+            </div>
+          )}
         </Link>
       </div>
     </div>

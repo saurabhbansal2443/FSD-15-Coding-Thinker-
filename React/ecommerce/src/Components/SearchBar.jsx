@@ -32,7 +32,7 @@ const SearchBar = () => {
         onChange={(e) => {
           setSearchQuery(e.target.value);
         }}
-        className="bg-white w-full h-full rounded-2xl   focus:outline-none border-none pl-5 pr-5"
+        className="bg-white text-black w-full h-full rounded-2xl   focus:outline-none border-none pl-5 pr-5"
         type="text"
       />
       {showSearchSuggestion && (

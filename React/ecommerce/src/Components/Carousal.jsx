@@ -74,7 +74,7 @@ const Carousal = () => {
         }}
         className="bg-white h-10 w-8 absolute left-0 flex justify-center items-center  top-[20vh] "
       >
-        <ChevronLeft />
+        <ChevronLeft fill="#000000" />
       </div>
       <div
         onClick={(e) => {
@@ -82,7 +82,7 @@ const Carousal = () => {
         }}
         className="bg-white h-10 w-8 absolute right-0 flex justify-center items-center  top-[20vh] "
       >
-        <ChevronRight />
+        <ChevronRight fill="#000000" />
       </div>
       <div className="h-full w-full">
         <img className="h-full w-full" src={images[activeIndex].image} alt="" />
