@@ -1,0 +1,64 @@
+import http from "http";
+import fs from "fs";
+import express, { json, urlencoded } from "express";
+
+let productsData = fs.readFileSync("./Data.json", "utf-8");
+let jsonProductData = JSON.parse(productsData);
+let htmlFile = fs.readFileSync("./index.html", "utf-8");
+
+let PORT = 8080;
+
+const server = express();
+
+server.use(json()); // built in middelware-- to parse the body data
+server.use(urlencoded())
+server.use("/", (req, res, next) => {
+  // middelware --> custom middelware + application level
+  console.log(req.ip, req.headers["content-type"]);
+  next();
+});
+
+// application level
+// router level
+// built IN
+// third party
+// custom middware
+
+// api , route , enpoints
+
+server.get("/", (req, res) => {
+  res.send({ res: "GET" });
+});
+
+server.post("/", (req, res) => {
+  console.log(req.body);
+  res.send({ res: "POST" });
+});
+
+server.get("/product", (req, res) => {
+  res.json(jsonProductData);
+});
+server.get("/product", (req, res) => {
+  res.json(jsonProductData);
+});
+// Params
+server.get("/product/:id", (req, res) => {
+  const id = req.params.id;
+  res.send(jsonProductData[id - 1]);
+});
+// Query Params  ?
+server.get("/queryParams", (req, res) => {
+  const query = req.query;
+  res.send(query);
+});
+
+server.patch("/", (req, res) => {
+  res.send({ res: "PATCH" });
+});
+server.delete("/", (req, res) => {
+  res.send({ res: "DELETE" });
+});
+
+server.listen(PORT, () => {
+  console.log("Server is running at ", PORT);
+});
