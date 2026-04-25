@@ -1,10 +1,13 @@
 import express from "express";
 import fs from "fs";
 
-const productData = JSON.parse(fs.readFileSync("./Data.json", "utf-8"));
+let productData = JSON.parse(fs.readFileSync("./Data.json", "utf-8"));
 
 const server = express();
 
+server.use(express.json());
+
+// Read Operation
 server.get("/products/:id", (req, res) => {
   const id = req.params.id;
   if (id <= 0 || id > productData.length) {
@@ -48,13 +51,66 @@ server.get("/products", (req, res) => {
 }); // query params --> limit and skip
 server.get("/products/category/:category", (req, res) => {
   let category = req.params.category;
-
   category = category.trim().toLowerCase();
-
   const filteredArray = productData.filter((data) =>
     data.category.trim().toLowerCase().includes(category),
   );
   res.send(filteredArray);
+});
+
+// Create Operation
+server.post("/products", (req, res) => {
+  const product = req.body;
+  const id = product?.id;
+  if (!id) {
+    res.send({
+      product: null,
+      error: "Id not provided",
+    });
+  }
+
+  const isIdExist = productData.find((data) => data.id == id);
+
+  if (isIdExist) {
+    res.send({
+      product: null,
+      error: "Product already Exist",
+    });
+  } else {
+    productData = [...productData, product];
+    res.send({
+      product: product,
+      error: null,
+    });
+  }
+});
+
+// update --> modify/replace
+
+server.patch("/products", (req, res) => {
+  const product = req.body;
+  const id = product?.id;
+  if (!id) {
+    res.send({
+      product: null,
+      error: "Id not provided",
+    });
+  }
+
+  const isIdExist = productData.find((data) => data.id == id);
+
+  if (isIdExist) {
+    const updateData = { ...isIdExist, ...product };
+    res.send({
+      product: updateData,
+      error: "Product already Exist",
+    });
+  } else {
+    res.send({
+      product: null,
+      error: "ProductId is wrong ",
+    });
+  }
 });
 
 server.listen(8080, () => {
