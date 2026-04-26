@@ -86,7 +86,7 @@ server.post("/products", (req, res) => {
 });
 
 // update --> modify/replace
-
+// modify
 server.patch("/products", (req, res) => {
   const product = req.body;
   const id = product?.id;
@@ -111,6 +111,21 @@ server.patch("/products", (req, res) => {
       error: "ProductId is wrong ",
     });
   }
+});
+// replace
+server.put("/products/:id", (req, res) => {
+  const productId = req.params.id;
+  productData[productId - 1] = req.body;
+
+  res.send(productData[productId - 1]);
+});
+
+// delete --
+
+server.delete("/products/:id", (req, res) => {
+  const productId = req.params.id;
+  const removedData = productData.splice(productId - 1, 1);
+  res.send(removedData);
 });
 
 server.listen(8080, () => {
