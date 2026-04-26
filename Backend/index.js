@@ -5,6 +5,8 @@ let productData = JSON.parse(fs.readFileSync("./Data.json", "utf-8"));
 
 const server = express();
 
+server.use(express.static("public"))// static hosting 
+
 server.use(express.json());
 
 // Read Operation
