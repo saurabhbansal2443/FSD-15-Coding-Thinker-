@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 
+import "dotenv/config";
+
+const mongodbUri = process.env.MONGODB_URI;
+
 async function ConnectDb() {
-  await mongoose.connect(
-    "mongodb+srv://saurabh:saurabhlmknj@cluster0.ubt0ygq.mongodb.net/",
-  );
+  await mongoose.connect(mongodbUri);
 }
 
 export default ConnectDb;

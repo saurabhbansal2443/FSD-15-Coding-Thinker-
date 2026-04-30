@@ -1,7 +1,11 @@
 import express from "express";
 import ProductRouter from "./Routes/Product.routes.js";
 import ConnectDb from "./Database/index.js";
+import "dotenv/config";
 const server = express();
+const Port = process.env.PORT;
+
+
 
 // password -- saurabhlmknj
 // username -- saurabh
@@ -15,8 +19,8 @@ server.use("/products", ProductRouter);
 ConnectDb()
   .then(() => {
     console.log("Db connected");
-    server.listen(8080, () => {
-      console.log("Server started");
+    server.listen(Port, () => {
+      console.log("Server started at ", Port);
     });
   })
   .catch((err) => {
