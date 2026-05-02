@@ -9,12 +9,6 @@ const Port = process.env.PORT;
 
 
 
-// password -- saurabhlmknj
-// username -- saurabh
-
-// mongodb+srv://saurabh:saurabhlmknj@cluster0.ubt0ygq.mongodb.net/
-// server.use(express.static("public"))// static hosting
-
 server.use(express.json());
 server.use("/products", ProductRouter);
 server.use("/users",UserRouter)
