@@ -17,7 +17,7 @@ const Port = process.env.PORT;
 
 server.use(express.json());
 server.use("/products", ProductRouter);
-server.use("/user",UserRouter)
+server.use("/users",UserRouter)
 
 ConnectDb()
   .then(() => {
