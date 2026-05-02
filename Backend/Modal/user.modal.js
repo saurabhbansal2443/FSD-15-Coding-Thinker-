@@ -31,4 +31,6 @@ const userSchema = new Schema(
   { timestamps: true },
 );
 
-const User = modal("Users", userSchema);
+const User = model("Users", userSchema);
+
+export default User;

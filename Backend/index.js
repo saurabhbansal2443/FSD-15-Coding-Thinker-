@@ -1,7 +1,9 @@
 import express from "express";
 import ProductRouter from "./Routes/Product.routes.js";
+import UserRouter from "./Routes/User.routes.js";
 import ConnectDb from "./Database/index.js";
 import "dotenv/config";
+import User from "./Modal/user.modal.js";
 const server = express();
 const Port = process.env.PORT;
 
@@ -15,6 +17,7 @@ const Port = process.env.PORT;
 
 server.use(express.json());
 server.use("/products", ProductRouter);
+server.use("/user",UserRouter)
 
 ConnectDb()
   .then(() => {
