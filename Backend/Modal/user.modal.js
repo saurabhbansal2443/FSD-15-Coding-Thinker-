@@ -54,7 +54,6 @@ userSchema.methods.generateToken = async function () {
   const token = await jwt.sign(
     {
       data: { _id, email },
-      exp: 24 * 60 * 60,
     },
     process.env.SECRET_KEY,
   );

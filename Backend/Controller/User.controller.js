@@ -56,9 +56,28 @@ const login = async (req, res) => {
   }
 };
 const getUser = (req, res) => {
-  res.send(req.user);
+  res.send({
+    res: req.user,
+    erorr: "null ",
+  });
 };
-const updateUser = (req, res) => {};
-const deleteUser = (req, res) => {};
+const updateUser = async (req, res) => {
+  const userId = req.user._id;
+  const data = req.body;
+  const updateUser = await User.findByIdAndUpdate(userId, data, { new: true });
+  res.send({
+    res: updateUser,
+    erorr: "null ",
+  });
+};
+const deleteUser = async (req, res) => {
+  const userId = req.user._id;
+  const data = req.body;
+  const deletedUser = await User.findByIdAndDelete(userId);
+  res.send({
+    res: deletedUser,
+    erorr: "null ",
+  });
+};
 
 export { signup, login, getUser, updateUser, deleteUser };
