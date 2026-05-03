@@ -21,7 +21,9 @@ const signup = async (req, res) => {
   }
   const newUser = User({ name, email, password });
   const userData = await newUser.save();
-  res.status(201).send({
+  const token = await userData.generateToken();
+
+  res.status(201).cookie("Token", token).send({
     res: userData,
     erorr: null,
   });
@@ -40,7 +42,9 @@ const login = async (req, res) => {
   const isPassowrdCorrect = await isUserExist.comparePassowrd(password);
 
   if (isPassowrdCorrect) {
-    res.status(200).send({
+    const token = await userData.generateToken();
+
+    res.status(200).cookie("Token", token).send({
       res: isUserExist,
       erorr: null,
     });
