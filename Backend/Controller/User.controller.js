@@ -55,7 +55,9 @@ const login = async (req, res) => {
     });
   }
 };
-const getUser = (req, res) => {};
+const getUser = (req, res) => {
+  res.send(req.user);
+};
 const updateUser = (req, res) => {};
 const deleteUser = (req, res) => {};
 
