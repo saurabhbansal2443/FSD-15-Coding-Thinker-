@@ -42,7 +42,7 @@ const login = async (req, res) => {
   const isPassowrdCorrect = await isUserExist.comparePassowrd(password);
 
   if (isPassowrdCorrect) {
-    const token = await userData.generateToken();
+    const token = await isUserExist.generateToken();
 
     res.status(200).cookie("Token", token).send({
       res: isUserExist,
