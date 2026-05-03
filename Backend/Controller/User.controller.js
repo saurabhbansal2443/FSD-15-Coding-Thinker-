@@ -8,7 +8,7 @@ const signup = async (req, res) => {
       res: null,
       error: `User ${!name ? "name ," : ""}${!email ? "email ," : ""}${!password ? "passowrd" : ""} not found `,
     });
-    return ; 
+    return;
   }
   const userExist = await User.findOne({ email });
 
@@ -17,7 +17,7 @@ const signup = async (req, res) => {
       res: null,
       error: `User already exist `,
     });
-    return ; 
+    return;
   }
   const newUser = User({ name, email, password });
   const userData = await newUser.save();
@@ -26,7 +26,31 @@ const signup = async (req, res) => {
     erorr: null,
   });
 };
-const login = (req, res) => {};
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  const isUserExist = await User.findOne({ email });
+
+  if (!isUserExist) {
+    res.status(404).send({
+      res: null,
+      error: `User doesnot exist`,
+    });
+  }
+
+  const isPassowrdCorrect = await isUserExist.comparePassowrd(password);
+
+  if (isPassowrdCorrect) {
+    res.status(200).send({
+      res: isUserExist,
+      erorr: null,
+    });
+  } else {
+    res.status(200).send({
+      res: null,
+      erorr: "EmailId/Password is wrong ",
+    });
+  }
+};
 const getUser = (req, res) => {};
 const updateUser = (req, res) => {};
 const deleteUser = (req, res) => {};

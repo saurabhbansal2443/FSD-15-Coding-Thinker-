@@ -33,16 +33,18 @@ const userSchema = new Schema(
 );
 
 userSchema.pre("save", async function () {
- 
   let user = this;
-
   // only hash the password if it has been modified (or is new)
-  if (!user.isModified("password")) return 
-
+  if (!user.isModified("password")) return;
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(user.password, salt);
   user.password = hashedPassword;
 });
+
+userSchema.methods.comparePassowrd = async function (candidatePassowrd) {
+  const result = await bcrypt.compare(candidatePassowrd, this.password);
+  return result;
+};
 
 const User = model("Users", userSchema);
 
