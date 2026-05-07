@@ -21,7 +21,7 @@ const Navbar = ({ hideSearchBar = false }) => {
 
       {!hideSearchBar && <SearchBar />}
 
-      <div className="flex justify-between items-center w-1/8">
+      <div className="flex justify-between items-center w-1/5">
         <div
           onClick={() => {
             theme == "light" ? setTheme("dark") : setTheme("light");
@@ -54,6 +54,12 @@ const Navbar = ({ hideSearchBar = false }) => {
               {cartCount}
             </div>
           )}
+        </Link>
+        <Link
+          className=" h-full w-12 relative text-xl text-white "
+          to={`/signup`}
+        >
+          Login/Signup
         </Link>
       </div>
     </div>

@@ -3,9 +3,7 @@ import "dotenv/config";
 import User from "../Modal/user.modal.js";
 
 const auth = async (req, res, next) => {
-  console.log("req.cookies", req.cookies);
   const token = req.cookies.Token;
-
   if (!token) {
     res.status(404).send({
       res: null,
@@ -18,7 +16,6 @@ const auth = async (req, res, next) => {
     if (data) {
       const { _id, email } = data.data;
       const user = await User.findById(_id);
-      console.log("user",user)
       req.user = user;
       next();
     } else {

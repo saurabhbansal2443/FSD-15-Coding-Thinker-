@@ -6,6 +6,7 @@ import ThemeProvider from "./Store/ThemeProvider";
 import ProductCategory from "./Screens/ProductCategory";
 // import Wishlist from "./Screens/Wishlist";
 import Cart from "./Screens/Cart";
+import Signup from "./Screens/Signup";
 
 const Wishlist = React.lazy(() => import("./Screens/Wishlist"));
 
@@ -25,6 +26,7 @@ const App = () => {
           }
         />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </ThemeProvider>
   );
