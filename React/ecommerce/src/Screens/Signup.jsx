@@ -24,7 +24,49 @@ const Signup = () => {
     password: "",
   });
 
-  console.log("formstate", formState);
+  const [error, setError] = useState({
+    emailError: null,
+    passwordError: null,
+    error: null,
+  });
+
+  function checkValidation() {
+    if (!formState.email) {
+      setError({
+        ...error,
+        error: "Please enter the email",
+      });
+    } else if (!formState.password) {
+      setError({
+        ...error,
+        error: "Please enter the password",
+      });
+    } else if (!isValidEmail(formState.email)) {
+      setError({
+        ...error,
+        emailError: "Please enter a valid email",
+      });
+    } else if (!isValidPassword(formState.password)) {
+      setError({
+        ...error,
+        passwordError:
+          "Your password must contain small case and uppercase letter , a number and special character",
+      });
+    }
+  }
+
+  const signup = () => {
+    if (!checkValidation()) {
+      return;
+    }
+  };
+  const login = () => {
+    if (!checkValidation()) {
+      return;
+    }
+  };
+
+  const genricError = error?.error;
   return (
     <div className="h-screen w-screen">
       <Navbar />
@@ -51,6 +93,7 @@ const Signup = () => {
               label: "Email",
               placeholder: "Enter your email",
               value: formState.email,
+              error: error.emailError,
               setValue: (newValue) => {
                 setFormState({
                   ...formState,
@@ -64,6 +107,7 @@ const Signup = () => {
               label: "Password",
               placeholder: "Enter your password",
               value: formState.password,
+              error: error.passwordError,
               type: "password",
               setValue: (newValue) => {
                 setFormState({
@@ -73,7 +117,17 @@ const Signup = () => {
               },
             }}
           />
-          <button className="btn  mt-3 w-2/4">
+          {genricError ? (
+            <p className="text-red-500 mt-2">{genricError}</p>
+          ) : (
+            <></>
+          )}
+          <button
+            onClick={() => {
+              isSignup ? signup() : login();
+            }}
+            className="btn  mt-3 w-2/4"
+          >
             {/* <span className="loading loading-spinner"></span> */}
             {buttonText2}
           </button>
@@ -100,6 +154,7 @@ function FieldSet({ data }) {
   if (!data) return null;
   const { label, placeholder, value, setValue } = data;
   const type = data?.type ?? "text";
+  const error = data?.error ?? null;
   return (
     <fieldset className="fieldset w-2/3 mb-5">
       <legend className="fieldset-legend">{label}</legend>
@@ -112,6 +167,25 @@ function FieldSet({ data }) {
           setValue(e.target.value);
         }}
       />
+      {error ? <p className="text-red-500 mt-2">{error}</p> : null}
     </fieldset>
   );
+}
+
+function isValidEmail(email) {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (emailRegex.text(email)) {
+    return true;
+  }
+  return false;
+}
+function isValidPassword(password) {
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  if (passwordRegex.text(password)) {
+    return true;
+  }
+  return false;
 }
