@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
+import { signupUrl } from "../Constants";
 
 const signupText = {
   infoText: "Already a user",
@@ -14,6 +15,7 @@ const loginText = {
 
 const Signup = () => {
   const [isSignup, setIsSignup] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const { infoText, buttonText, buttonText2 } = isSignup
     ? signupText
     : loginText;
@@ -33,31 +35,49 @@ const Signup = () => {
   function checkValidation() {
     if (!formState.email) {
       setError({
-        ...error,
         error: "Please enter the email",
       });
+      return false;
     } else if (!formState.password) {
       setError({
-        ...error,
         error: "Please enter the password",
       });
+      return false;
     } else if (!isValidEmail(formState.email)) {
       setError({
-        ...error,
         emailError: "Please enter a valid email",
       });
+      return false;
     } else if (!isValidPassword(formState.password)) {
       setError({
-        ...error,
         passwordError:
           "Your password must contain small case and uppercase letter , a number and special character",
       });
+      return false;
     }
+    return true;
   }
 
-  const signup = () => {
+  const signup = async () => {
     if (!checkValidation()) {
       return;
+    }
+    setIsLoading(true);
+    console.log("Form State ", formState);
+    try {
+      const apiData = await fetch(signupUrl, {
+        method: "POST",
+        headers: {
+          ContentType: "text/json",
+        },
+        body: JSON.stringify(formState),
+      });
+      const jsonData = await apiData.json();
+      console.log(jsonData);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
     }
   };
   const login = () => {
@@ -128,8 +148,11 @@ const Signup = () => {
             }}
             className="btn  mt-3 w-2/4"
           >
-            {/* <span className="loading loading-spinner"></span> */}
-            {buttonText2}
+            {isLoading ? (
+              <span className="loading loading-spinner"></span>
+            ) : (
+              buttonText2
+            )}
           </button>
           <p className="mt-5">
             {infoText}
@@ -175,17 +198,20 @@ function FieldSet({ data }) {
 function isValidEmail(email) {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  if (emailRegex.text(email)) {
+  if (emailRegex.test(email)) {
     return true;
   }
   return false;
 }
 function isValidPassword(password) {
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  return true;
+  // const passwordRegex =
+  //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-  if (passwordRegex.text(password)) {
-    return true;
-  }
-  return false;
+  // if (passwordRegex.test(password)) {
+  //   return true;
+  // }
+  // return false;
 }
+
+// air48912

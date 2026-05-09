@@ -5,9 +5,13 @@ import ConnectDb from "./Database/index.js";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
 import User from "./Modal/user.modal.js";
+import cors from "cors";
 const server = express();
 const Port = process.env.PORT;
 
+const corsOptions = { origin: "*", credentials: true };
+
+server.use(cors(corsOptions));
 server.use(express.json());
 server.use(cookieParser());
 server.use("/products", ProductRouter);
