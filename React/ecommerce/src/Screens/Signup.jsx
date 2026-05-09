@@ -68,14 +68,15 @@ const Signup = () => {
       const apiData = await fetch(signupUrl, {
         method: "POST",
         headers: {
-          ContentType: "text/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formState),
+        credentials: "include",
       });
       const jsonData = await apiData.json();
       console.log(jsonData);
     } catch (err) {
-      console.log(err);
+      console.log(JSON.stringify(err));
     } finally {
       setIsLoading(false);
     }
