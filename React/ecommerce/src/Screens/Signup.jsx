@@ -75,10 +75,33 @@ const Signup = () => {
         credentials: "include",
       });
       const jsonData = await apiData.json();
-      console.log(jsonData);
+      const error = jsonData.error;
+      if (error) {
+        setError({
+          error: error,
+        });
+      } else {
+        setFormState({
+          name: "",
+          email: "",
+          password: "",
+        });
+        setError({
+          emailError: null,
+          passwordError: null,
+          error: null,
+        });
+      }
     } catch (err) {
       console.log(JSON.stringify(err));
     } finally {
+      setTimeout(() => {
+        setError({
+          emailError: null,
+          passwordError: null,
+          error: null,
+        });
+      }, 3000);
       setIsLoading(false);
     }
   };
@@ -151,6 +174,11 @@ const Signup = () => {
             <button
               onClick={() => {
                 setIsSignup(!isSignup);
+                setFormState({
+                  name: "",
+                  email: "",
+                  password: "",
+                });
               }}
               className="text-blue-300 ml-2"
             >
