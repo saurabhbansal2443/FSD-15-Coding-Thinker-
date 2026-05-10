@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
-import { signupUrl } from "../Constants";
+import { signupUrl, loginUrl } from "../Constants";
 
 const signupText = {
   infoText: "Already a user",
@@ -65,7 +65,8 @@ const Signup = () => {
     setIsLoading(true);
     console.log("Form State ", formState);
     try {
-      const apiData = await fetch(signupUrl, {
+      const url = isSignup ? signupUrl : loginUrl;
+      const apiData = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,11 +80,6 @@ const Signup = () => {
       console.log(JSON.stringify(err));
     } finally {
       setIsLoading(false);
-    }
-  };
-  const login = () => {
-    if (!checkValidation()) {
-      return;
     }
   };
 
@@ -143,12 +139,7 @@ const Signup = () => {
           ) : (
             <></>
           )}
-          <button
-            onClick={() => {
-              isSignup ? signup() : login();
-            }}
-            className="btn  mt-3 w-2/4"
-          >
+          <button onClick={signup} className="btn  mt-3 w-2/4">
             {isLoading ? (
               <span className="loading loading-spinner"></span>
             ) : (
