@@ -9,7 +9,7 @@ import cors from "cors";
 const server = express();
 const Port = process.env.PORT;
 
-const corsOptions = { origin: "http://localhost:5173", credentials: true };
+const corsOptions = { origin: "https://shopcart1301.netlify.app/", credentials: true };
 
 server.use(cors(corsOptions));
 server.use(express.json());

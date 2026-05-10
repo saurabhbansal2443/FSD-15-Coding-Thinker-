@@ -1,13 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../Store/ThemeProvider";
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 import UseWishlistAndCartCount from "../Hooks/UseWishlistAndCartCount";
+import { getUser } from "../Constants";
+import { useDispatch } from "react-redux";
+import { setUser } from "../app/UserSlice";
 
 const Navbar = ({ hideSearchBar = false }) => {
   const { theme, setTheme } = useContext(ThemeContext);
   const { cartCount, wishlistCount } = UseWishlistAndCartCount();
+  const dispatch = useDispatch();
+  const userData = useSelector((store) => store.user.user);
+
+  async function getUserData() {
+    const res = await fetch(getUser, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    const jsonRes = await res.json();
+    if (jsonRes?.res) {
+      dispatch(setUser(jsonRes?.res));
+    }
+  }
+
+  useEffect(() => {
+    if (userData) return;
+    getUserData();
+  }, []);
 
   const light =
     "h-12 w-screen border-2 border-blue-300 bg-blue-300 flex items-center justify-around";
@@ -55,12 +80,18 @@ const Navbar = ({ hideSearchBar = false }) => {
             </div>
           )}
         </Link>
-        <Link
-          className=" h-full w-12 relative text-xl text-white "
-          to={`/signup`}
-        >
-          Login/Signup
-        </Link>
+        {userData?.name ? (
+          <p className=" h-full w-12 relative text-xl text-white ">
+            {userData?.name}
+          </p>
+        ) : (
+          <Link
+            className=" h-full w-12 relative text-xl text-white "
+            to={`/signup`}
+          >
+            Login/Signup
+          </Link>
+        )}
       </div>
     </div>
   );

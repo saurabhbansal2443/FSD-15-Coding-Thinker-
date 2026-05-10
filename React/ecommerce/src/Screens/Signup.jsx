@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import { signupUrl, loginUrl } from "../Constants";
-
+import { useDispatch } from "react-redux";
+import { setUser } from "../app/UserSlice";
+import { useNavigate } from "react-router-dom";
 const signupText = {
   infoText: "Already a user",
   buttonText: "Login",
@@ -14,11 +16,14 @@ const loginText = {
 };
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const [isSignup, setIsSignup] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const { infoText, buttonText, buttonText2 } = isSignup
     ? signupText
     : loginText;
+
+  const navigate = useNavigate();
 
   const [formState, setFormState] = useState({
     name: "",
@@ -63,7 +68,7 @@ const Signup = () => {
       return;
     }
     setIsLoading(true);
-    console.log("Form State ", formState);
+   
     try {
       const url = isSignup ? signupUrl : loginUrl;
       const apiData = await fetch(url, {
@@ -75,12 +80,15 @@ const Signup = () => {
         credentials: "include",
       });
       const jsonData = await apiData.json();
+      console.log(jsonData);
       const error = jsonData.error;
       if (error) {
         setError({
           error: error,
         });
       } else {
+        dispatch(setUser(jsonData.res));
+        navigate("/");
         setFormState({
           name: "",
           email: "",
